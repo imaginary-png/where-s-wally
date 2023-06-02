@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
 
-function App() {
+const App = () => {
+  const [posX, setX] = useState(0);
+  const [posY, setY] = useState(0);
+
+  const updatePos = () => {
+    window.addEventListener("mousemove", (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      if (x !== posX) setX(x);
+      if (y !== posY) setY(y);
+    });
+  };
+
+  // run just once on component mount
+
+  useEffect(() => {
+    updatePos();
+    console.log("window event subbed ");
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>{`(${posX}, ${posY})`}</p>
     </div>
   );
-}
+};
 
 export default App;
