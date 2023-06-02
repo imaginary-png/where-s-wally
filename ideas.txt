@@ -1,0 +1,93 @@
+[app component] - global states
+[name, setName] = useState(anon);
+[gameImg, setGameImg] = useState( - first image - )
+[gameState, setGameState] = useState("start");
+[startTime, setStartTime] = useState(nil);
+
+images[] -- game background images to select from
+
+    Uses Switch to render correct component.
+
+------
+lib - find.js
+
+                // dictionary of image name - returns array that contains
+                // obj - {charactername, imgSrc, topleft, botright}
+                // for ease of testing -- use this func
+
+charactersToFind =  {"image name" : [{ name : "charName", imgSrc : src, topLeft : {x, y}, botRight : {x,y} }]}
+
+                // dict of image name - returns array of objs
+                // { character name, character image }
+charactersToFind =  {"image name" : [ { name: "char name", imgSrc : charImgSrc } ]
+
+find.from(image_name)
+returns array of objs - char name + char image
+
+find.posFrom(image_name)
+returns array of objs - char name + char image + positions
+
+--------
+ 
+ >>>> IF GAMESTATE === 'start' <<<<
+
+[start_Screen component (setGameImg, images[], setGameState )]
+draws main menu div
+    -   selection of images - in row divs
+    -   first one default selected - css - has coloured border
+    -   onClick of each div, change selected to that one
+
+play button
+    - loads selected image data and draws [game component]
+    - change gameState = 'playing';
+
+------
+
+>>>> IF GAMESTATE === 'playing' <<<<
+
+[game component (img, toFind[], setStartTime, setGameState)]
+
+
+
+receives image and array of character img + names + id? to find
+
+draws image in a div
+
+draws modal / popup menu on left/right? click 
+    - contains character images + name in <li>
+        - onClick, passes char id to firebase database check?
+        - or onload of component useEffect 
+            - contacts firebase store for all the correct spots?
+                - faster than contacting store on user interaction?
+        - onClick, if correct position
+            - if all characters found
+                - gameState = 'end'
+
+
+-------
+
+>>>> IF GAMESTATE === 'end' <<<<
+
+[end_screen component (startTime, name, setName, setGameState)]
+
+draws end game screen
+    - show time taken based on startTime
+    - Allow user to enter name 
+    - save to database?
+    - show leaderboards?
+
+    -Play Again Button
+        - takes back to app
+        - setGameState('start')
+        
+-----------------
+
+                Component Tree
+
+                   [Index]
+                      |
+                    [app]
+                      | 
+      ________________|________________
+      |               |               |
+[start_screen]      [game]       [end_screen]
