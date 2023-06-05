@@ -34,7 +34,7 @@ const Game = ({ image, setX, setY }) => {
   return (
     <div className="game-root-div">
       <div className="game-image-div">
-        <img src={image} alt="game" id="game-image"></img>
+        <img src={image} alt="game" id="game-image" draggable="false"></img>
       </div>
     </div>
   );

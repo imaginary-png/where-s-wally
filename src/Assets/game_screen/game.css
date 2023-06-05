@@ -4,5 +4,6 @@
 }
 
 #game-image {
-  scale: 6;
+  image-rendering: pixelated;
+  scale: 1;
 }

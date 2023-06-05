@@ -8,7 +8,12 @@ const ImagePanel = ({ image, selected, setGameImage }) => {
         setGameImage(image);
       }}
     >
-      <img src={image.src} className={`image-container`} alt={image.name}></img>
+      <img
+        src={image.src}
+        className={`image-container`}
+        alt={image.name}
+        draggable="false"
+      ></img>
     </div>
   );
 };
