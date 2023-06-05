@@ -1,9 +1,9 @@
 .game-root-div {
   background-color: rgba(235, 155, 81, 0.963);
-  height: 94vh;
+  width: fit-content;
 }
 
 #game-image {
   image-rendering: pixelated;
-  scale: 1;
+  width: 3000px;
 }

@@ -4,28 +4,22 @@ import StartScreen from "./Components/start_screen/start_screen";
 import Game from "./Components/game_screen/game";
 import EndScreen from "./Components/end_screen/end_screen";
 
-//images
-import alien_planet from "./Assets/images/alien planet.png";
-import pirate_island from "./Assets/images/pirate island.png";
-import medieval from "./Assets/images/medieval.png";
-import post_apocalypse from "./Assets/images/post-apocalypse.png";
-import prehistoria from "./Assets/images/prehistoria.png";
-import underground from "./Assets/images/underground.png";
+import GameStatePanel from "./Components/game_state_panel";
+import GameImages from "./lib/game_images";
 
 const App = () => {
-  const gameImages = [
-    { name: "alien planet.", src: alien_planet, id: 0 },
-    { name: "pirate island.", src: pirate_island, id: 1 },
-    { name: "medieval.", src: medieval, id: 2 },
-    { name: "post apocalypse.", src: post_apocalypse, id: 3 },
-    { name: "prehistoria.", src: prehistoria, id: 4 },
-    { name: "underground.", src: underground, id: 5 },
-  ];
-
-  const [posX, setX] = useState(0);
-  const [posY, setY] = useState(0);
+  const gameImages = GameImages().getImages();
   const [gameState, setGameState] = useState("start");
   const [gameImage, setGameImage] = useState(gameImages[0]);
+  const [found, setFound] = useState([false, false, false]);
+
+  const setFoundStatus = () => {
+    let toFindStatus = [];
+    gameImage.toFind.forEach(() => {
+      toFindStatus.push(false);
+    });
+    setFound(toFindStatus);
+  };
 
   const renderGameState = () => {
     switch (gameState) {
@@ -36,10 +30,17 @@ const App = () => {
             selected={gameImage.id}
             setGameState={setGameState}
             setGameImage={setGameImage}
+            setFoundStatus={setFoundStatus}
           />
         );
       case "game":
-        return <Game image={gameImage.src} setX={setX} setY={setY} />;
+        return (
+          <Game
+            image={gameImage.src}
+            toFind={gameImage.toFind}
+            foundStatus={found}
+          />
+        );
       case "end":
         return <EndScreen />;
       default:
@@ -61,9 +62,17 @@ const App = () => {
         setGameState("game");
     }
   };
+
   return (
     <div className="App">
-      <p>{`(${posX}, ${posY})`}</p>
+      <div className="app-game-panel">
+        <GameStatePanel
+          gameState={gameState}
+          toFind={gameImage.toFind}
+          attribution={gameImage.attribution}
+          foundStatus={found}
+        />
+      </div>
       <button onClick={toggleGameState}>toggle game state</button>
       {renderGameState()}
     </div>

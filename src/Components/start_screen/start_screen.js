@@ -1,7 +1,13 @@
 import "../../Assets/start_screen/start_screen.css";
 import ImageSelection from "./image_selection";
 
-const StartScreen = ({ images, selected, setGameState, setGameImage }) => {
+const StartScreen = ({
+  images,
+  selected,
+  setGameState,
+  setGameImage,
+  setFoundStatus,
+}) => {
   return (
     <div className="start-root-div">
       <ImageSelection
@@ -12,6 +18,7 @@ const StartScreen = ({ images, selected, setGameState, setGameImage }) => {
       <button
         onClick={() => {
           setGameState("game");
+          setFoundStatus();
         }}
       >
         play.
