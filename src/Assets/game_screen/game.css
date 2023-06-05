@@ -1,0 +1,8 @@
+.game-root-div {
+  background-color: rgba(235, 155, 81, 0.963);
+  height: 94vh;
+}
+
+#game-image {
+  scale: 6;
+}

@@ -1,0 +1,32 @@
+.image-panel-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-width: 4px;
+
+  background-color: #838080;
+
+  height: calc(40vh * 0.9);
+
+  max-height: 800px;
+  max-width: 400px;
+
+  transition: 0.005s linear;
+}
+
+.image-container {
+  width: 100%;
+}
+
+.image-selected-true {
+  border-style: inset;
+  box-shadow: 0px 0px 8px rgba(0, 89, 255, 0.65);
+}
+
+.image-selected-false {
+  border-style: outset;
+}
+.image-selected-false:active {
+  transform: scale(0.99);
+}

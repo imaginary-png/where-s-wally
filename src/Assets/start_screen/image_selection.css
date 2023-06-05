@@ -1,0 +1,19 @@
+.image-selection-main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  align-items: center;
+
+  height: 80vh;
+  width: calc(50vw);
+  max-width: 1400;
+
+  padding: 0 10px;
+  gap: 10px;
+
+  justify-items: center;
+
+  background-color: #888;
+
+  border-style: inset;
+}
