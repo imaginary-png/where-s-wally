@@ -11,14 +11,22 @@ const App = () => {
   const gameImages = GameImages().getImages();
   const [gameState, setGameState] = useState("start");
   const [gameImage, setGameImage] = useState(gameImages[0]);
-  const [found, setFound] = useState([false, false, false]);
+  const [found, setFound] = useState([]);
 
-  const setFoundStatus = () => {
+  const setInitialFoundStatus = () => {
     let toFindStatus = [];
     gameImage.toFind.forEach(() => {
       toFindStatus.push(false);
     });
     setFound(toFindStatus);
+  };
+
+  const setFoundStatus = (charId) => {
+    if (charId < 0 || charId > found.length - 1) return;
+    // verify against database
+    let newFound = found.slice();
+    newFound[charId] = true;
+    setFound(newFound);
   };
 
   const renderGameState = () => {
@@ -30,7 +38,7 @@ const App = () => {
             selected={gameImage.id}
             setGameState={setGameState}
             setGameImage={setGameImage}
-            setFoundStatus={setFoundStatus}
+            setFoundStatus={setInitialFoundStatus}
           />
         );
       case "game":
@@ -39,6 +47,7 @@ const App = () => {
             image={gameImage.src}
             toFind={gameImage.toFind}
             foundStatus={found}
+            setFoundStatus={setFoundStatus}
           />
         );
       case "end":

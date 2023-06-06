@@ -11,3 +11,18 @@
   justify-content: center;
   gap: 25px;
 }
+
+.game-panel-item-false {
+  border-style: dotted;
+  border-radius: 12%;
+  padding: 6px;
+}
+
+.game-panel-item-true {
+  border-style: dotted;
+  border-radius: 12%;
+  padding: 6px;
+
+  background-color: greenyellow;
+  opacity: 0.5;
+}

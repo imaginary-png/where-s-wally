@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../Assets/game_screen/game.css";
 import FindMenu from "../Components/game_screen/find_context_menu";
 
-const Game = ({ image, toFind, foundStatus }) => {
+const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
   const [charId, setCharId] = useState(-1);
 
   const game_clicked = (e) => {
@@ -11,14 +11,6 @@ const Game = ({ image, toFind, foundStatus }) => {
     const posY = e.nativeEvent.offsetY;
     console.log(`${e.nativeEvent.offsetX}, ${e.nativeEvent.offsetY}`);
 
-    // render modal popup below,
-    // toggle visibility and position here
-    // set x and y pos above,
-    // verify against database for toFind id, pos
-
-    // work on modal window, render down below
-    // use tofind (image, id) to populate modal window options
-    // on click use position - id against database
     check_pos(posX, posY);
   };
 
@@ -28,13 +20,22 @@ const Game = ({ image, toFind, foundStatus }) => {
     // check_database(image.id, charId, pos);
   };
 
-  // context menu test
+  // check selected character against position
+  const selectCharacter = (charId) => {
+    setFoundStatus(charId);
+  };
+
+  // context menu
   const [drawMenu, setDrawMenu] = useState(false);
   const [mousePos, setMousePos] = useState([0, 0]);
 
   const toggleDrawMenu = (e) => {
     setDrawMenu(!drawMenu);
     setMousePos([e.nativeEvent.clientX, e.nativeEvent.clientY]);
+  };
+
+  const findMenuLostFocus = (e) => {
+    if (drawMenu) toggleDrawMenu(e);
   };
 
   return (
@@ -49,8 +50,18 @@ const Game = ({ image, toFind, foundStatus }) => {
             game_clicked(e);
             toggleDrawMenu(e);
           }}
+          onMouseOver={findMenuLostFocus}
         />
-        {drawMenu ? <FindMenu mousePos={mousePos} toFind={toFind} /> : ""}
+        {drawMenu ? (
+          <FindMenu
+            mousePos={mousePos}
+            toFind={toFind}
+            foundStatus={foundStatus}
+            selectCharacter={selectCharacter}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

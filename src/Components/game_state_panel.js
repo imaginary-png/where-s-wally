@@ -10,7 +10,11 @@ const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
           <div className="game-panel-container">
             <p>Find the following!</p>
             {toFind.map((find) => {
-              return <p>{`${find.name} - ${find.src} - ${find.id}`}</p>;
+              return (
+                <p
+                  className={`game-panel-item-${foundStatus[find.id]}`}
+                >{`${find.name} - ${find.src} - ${find.id}`}</p>
+              );
             })}
             <p>{attribution}</p>
             <p>{`${foundStatus}`}</p>
