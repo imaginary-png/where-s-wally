@@ -1,6 +1,5 @@
 .start-root-div {
-  background-color: rgba(239, 63, 218, 0.866);
-  height: 94vh;
+  height: auto;
 
   display: flex;
 

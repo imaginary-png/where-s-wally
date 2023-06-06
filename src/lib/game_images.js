@@ -1,5 +1,10 @@
 //images
-import alien_planet from "../Assets/images/alien planet.png";
+import alien_planet from "../Assets/images/alien planet/alien planet.png";
+import alien_planet_0 from "../Assets/images/alien planet/0.png";
+import alien_planet_1 from "../Assets/images/alien planet/1.png";
+import alien_planet_2 from "../Assets/images/alien planet/2.png";
+import alien_planet_3 from "../Assets/images/alien planet/3.png";
+
 import pirate_island from "../Assets/images/pirate island.png";
 import medieval from "../Assets/images/medieval.png";
 import post_apocalypse from "../Assets/images/post-apocalypse.png";
@@ -14,10 +19,10 @@ const GameImages = () => {
         src: alien_planet,
         id: 0,
         toFind: [
-          { name: "char 1", src: "img link here", id: 0 },
-          { name: "char 2", src: "img link here", id: 1 },
-          { name: "char 3", src: "img link here", id: 2 },
-          { name: "char 4", src: "img link here", id: 3 },
+          { name: "master chief", src: alien_planet_0, id: 0 },
+          { name: "ewok", src: alien_planet_1, id: 1 },
+          { name: "clap trap", src: alien_planet_2, id: 2 },
+          { name: "baby yoda", src: alien_planet_3, id: 3 },
         ],
         attribution:
           "https://pixeljoint.com/forum/forum_posts.asp?TID=26631&PN=1",

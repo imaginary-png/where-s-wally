@@ -1,7 +1,8 @@
 #find-popup-root {
   width: 420px;
   height: 420px;
-  background-color: rgba(97, 152, 230, 0.875);
+  background-color: rgba(0, 0, 0, 0.481);
+  background: radial-gradient(circle, transparent 26%, rgba(0, 0, 0, 0.481) 0%);
   position: fixed;
   border-radius: 50%;
 }
@@ -10,7 +11,8 @@
   position: fixed;
   width: 150px;
   height: 150px;
-  background-color: rgba(244, 239, 239, 0.122);
+  background-color: rgba(255, 255, 255, 0);
+  background-blend-mode: exclusion;
   position: fixed;
   border-radius: 50%;
   border-style: solid;
@@ -31,9 +33,20 @@
 .to-find:hover {
   box-shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.833);
   scale: 1.2;
+  image-rendering: pixelated;
 }
 
 .found-true {
+  background-color: rgb(0, 0, 0);
+}
+
+.to-find > img,
+.found-true > img {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.found-true > img {
   opacity: 0.5;
-  background-color: gray;
 }

@@ -56,11 +56,11 @@ const FindMenu = ({ mousePos, toFind, foundStatus, selectCharacter }) => {
               selectCharacter(find.id);
             }}
           >
-            {find.name}
+            <img src={find.src} alt={find.name}></img>
           </div>
         );
       })}
-      <div id="target-circle">efews</div>
+      <div id="target-circle"></div>
     </div>
   );
 };

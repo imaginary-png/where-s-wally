@@ -11,13 +11,12 @@ const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
             <p>Find the following!</p>
             {toFind.map((find) => {
               return (
-                <p
-                  className={`game-panel-item-${foundStatus[find.id]}`}
-                >{`${find.name} - ${find.src} - ${find.id}`}</p>
+                <div className={`game-panel-item-${foundStatus[find.id]}`}>
+                  <img src={find.src} alt={find.name}></img>
+                </div>
               );
             })}
-            <p>{attribution}</p>
-            <p>{`${foundStatus}`}</p>
+            <a href={attribution}>img source</a>
           </div>
         );
       case "end":
