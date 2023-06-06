@@ -5,6 +5,7 @@ import FindMenu from "../Components/game_screen/find_context_menu";
 const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
   const [charId, setCharId] = useState(-1);
 
+  // used for checking mouse pos for getting coords
   const game_clicked = (e) => {
     // set char id in popup modal -- pass setCharId
     const posX = e.nativeEvent.offsetX;

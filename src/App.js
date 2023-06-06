@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StartScreen from "./pages/start_screen";
 import Game from "./pages/game";
 import EndScreen from "./pages/end_screen";
@@ -9,6 +9,7 @@ import GameImages from "./lib/game_images";
 
 const App = () => {
   const gameImages = GameImages().getImages();
+
   const [gameState, setGameState] = useState("start");
   const [gameImage, setGameImage] = useState(gameImages[0]);
   const [found, setFound] = useState([]);
@@ -29,6 +30,25 @@ const App = () => {
     setFound(newFound);
   };
 
+  const checkGameWon = () => {
+    // check each found status, if any are false - return
+    for (let i = 0; i < found.length; i++) {
+      if (!found[i]) return;
+    }
+
+    setGameState("end");
+  };
+
+  useEffect(checkGameWon, [found]);
+
+  const updateGameState = (state) => {
+    setGameState(state);
+  };
+
+  const updateGameImage = (image) => {
+    setGameImage(image);
+  };
+
   const renderGameState = () => {
     switch (gameState) {
       case "start":
@@ -36,8 +56,8 @@ const App = () => {
           <StartScreen
             images={gameImages}
             selected={gameImage.id}
-            setGameState={setGameState}
-            setGameImage={setGameImage}
+            setGameState={updateGameState}
+            setGameImage={updateGameImage}
             setFoundStatus={setInitialFoundStatus}
           />
         );
@@ -61,14 +81,14 @@ const App = () => {
   const toggleGameState = () => {
     switch (gameState) {
       case "game":
-        setGameState("end");
+        updateGameState("end");
         break;
       case "end":
-        setGameState("start");
+        updateGameState("start");
         break;
       case "start":
       default:
-        setGameState("game");
+        updateGameState("game");
     }
   };
 
