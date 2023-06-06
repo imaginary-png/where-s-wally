@@ -1,0 +1,28 @@
+#find-popup-root {
+  width: 450px;
+  height: 450px;
+  background-color: rgba(97, 152, 230, 0.122);
+  position: fixed;
+
+  border-style: solid;
+  border-color: black;
+}
+
+#target-circle {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  background-color: rgba(244, 239, 239, 0.122);
+  position: fixed;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: black;
+  border-width: 4px;
+}
+
+.to-find {
+  width: 120px;
+  height: 120px;
+  border-style: dashed;
+  border-radius: 50%;
+}

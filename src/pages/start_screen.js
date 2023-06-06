@@ -1,5 +1,5 @@
-import "../../Assets/start_screen/start_screen.css";
-import ImageSelection from "./image_selection";
+import "../Assets/start_screen/start_screen.css";
+import ImageSelection from "../Components/start_screen/image_selection";
 
 const StartScreen = ({
   images,

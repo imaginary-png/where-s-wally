@@ -1,8 +1,8 @@
 import "./App.css";
 import { useState } from "react";
-import StartScreen from "./Components/start_screen/start_screen";
-import Game from "./Components/game_screen/game";
-import EndScreen from "./Components/end_screen/end_screen";
+import StartScreen from "./pages/start_screen";
+import Game from "./pages/game";
+import EndScreen from "./pages/end_screen";
 
 import GameStatePanel from "./Components/game_state_panel";
 import GameImages from "./lib/game_images";

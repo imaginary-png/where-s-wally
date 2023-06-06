@@ -6,4 +6,5 @@
 #game-image {
   image-rendering: pixelated;
   width: 3000px;
+  padding: 100px;
 }

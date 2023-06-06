@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "../../Assets/game_screen/game.css";
+import "../Assets/game_screen/game.css";
+import FindMenu from "../Components/game_screen/find_context_menu";
 
 const Game = ({ image, toFind, foundStatus }) => {
   const [charId, setCharId] = useState(-1);
@@ -27,6 +28,15 @@ const Game = ({ image, toFind, foundStatus }) => {
     // check_database(image.id, charId, pos);
   };
 
+  // context menu test
+  const [drawMenu, setDrawMenu] = useState(false);
+  const [mousePos, setMousePos] = useState([0, 0]);
+
+  const toggleDrawMenu = (e) => {
+    setDrawMenu(!drawMenu);
+    setMousePos([e.nativeEvent.clientX, e.nativeEvent.clientY]);
+  };
+
   return (
     <div className="game-root-div">
       <div className="game-image-div">
@@ -35,8 +45,12 @@ const Game = ({ image, toFind, foundStatus }) => {
           alt="game"
           id="game-image"
           draggable="false"
-          onClick={game_clicked}
-        ></img>
+          onClick={(e) => {
+            game_clicked(e);
+            toggleDrawMenu(e);
+          }}
+        />
+        {drawMenu ? <FindMenu mousePos={mousePos} toFind={toFind} /> : ""}
       </div>
     </div>
   );
