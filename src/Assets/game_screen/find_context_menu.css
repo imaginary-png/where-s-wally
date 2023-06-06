@@ -1,11 +1,8 @@
 #find-popup-root {
-  width: 450px;
-  height: 450px;
-  background-color: rgba(97, 152, 230, 0.122);
+  width: 420px;
+  height: 420px;
+  background-color: rgba(97, 152, 230, 0.875);
   position: fixed;
-
-  border-style: solid;
-  border-color: black;
 }
 
 #target-circle {
@@ -21,8 +18,15 @@
 }
 
 .to-find {
+  position: absolute;
   width: 120px;
   height: 120px;
   border-style: dashed;
+  border-width: 3px;
   border-radius: 50%;
+}
+
+.to-find:hover {
+  box-shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.833);
+  scale: 1.2;
 }

@@ -15,8 +15,9 @@ const GameImages = () => {
         id: 0,
         toFind: [
           { name: "char 1", src: "img link here", id: 0 },
-          { name: "char 3", src: "img link here", id: 1 },
-          { name: "char 2", src: "img link here", id: 2 },
+          { name: "char 2", src: "img link here", id: 1 },
+          { name: "char 3", src: "img link here", id: 2 },
+          { name: "char 4", src: "img link here", id: 3 },
         ],
         attribution:
           "https://pixeljoint.com/forum/forum_posts.asp?TID=26631&PN=1",
