@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import "../Assets/game_state_panel.css";
 
 const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
+  useEffect(() => console.log("found"), [foundStatus]);
+
   const renderGamePanelState = () => {
     switch (gameState) {
       case "start":

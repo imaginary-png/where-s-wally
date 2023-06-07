@@ -51,6 +51,7 @@ const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
             toFind={toFind}
             foundStatus={foundStatus}
             selectCharacter={selectCharacter}
+            findMenuLostFocus={findMenuLostFocus}
           />
         ) : (
           ""

@@ -27,11 +27,23 @@ const App = () => {
   const setFoundStatus = async (charId, clickPos) => {
     if (charId < 0 || charId > found.length - 1) return;
     const valid = await db.validatePosition(gameImage.id, charId, clickPos);
-    if (!valid) return;
+    if (!valid) {
+      shakeGamePanel();
+      return;
+    }
 
     let newFound = found.slice();
     newFound[charId] = true;
     setFound(newFound);
+  };
+
+  const shakeGamePanel = () => {
+    const elements = document.getElementsByClassName("game-panel-item-false");
+
+    for (let i in elements) {
+      elements.item(i).classList.add("shake");
+      setTimeout(() => elements.item(i).classList.remove("shake"), 500);
+    }
   };
 
   const checkGameWon = () => {

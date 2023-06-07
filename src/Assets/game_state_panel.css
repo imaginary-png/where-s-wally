@@ -1,6 +1,8 @@
 .game-panel-root {
   position: fixed;
   background-color: rgb(106, 187, 245);
+  background-color: rgb(70, 67, 67);
+  color: white;
   width: 100%;
   height: 90px;
 }
@@ -26,6 +28,26 @@
 
 .game-panel-item-true {
   background-color: rgb(0, 0, 0);
+  border-color: rgba(255, 255, 255, 0.478);
+  animation: pulse-green 2s;
+}
+
+/*based on: https://www.florin-pop.com/blog/2019/03/css-pulse-effect/*/
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(26, 246, 22);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(51, 217, 178, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(51, 217, 178, 0);
+  }
 }
 
 .game-panel-item-false:hover,
@@ -44,6 +66,51 @@
 }
 .game-panel-item-true > img {
   opacity: 0.5;
+}
+
+.shake {
+  --shakeDist: 0.3em;
+  animation: shake 0.5s;
+}
+
+/*based on: https://codepen.io/suda1991/pen/xmKrNX*/
+@keyframes shake {
+  0% {
+    transform: translate(0);
+    border-color: red;
+  }
+  10% {
+    transform: translate(var(--shakeDist));
+    border-color: red;
+  }
+  20% {
+    transform: translate(-(var(--shakeDist)));
+    border-color: red;
+  }
+  30% {
+    transform: translate(var(--shakeDist));
+  }
+  40% {
+    transform: translate(-(var(--shakeDist)));
+  }
+  50% {
+    transform: translate(var(--shakeDist));
+  }
+  60% {
+    transform: translate(-(var(--shakeDist)));
+  }
+  70% {
+    transform: translate(var(--shakeDist));
+  }
+  80% {
+    transform: translate(-(var(--shakeDist)));
+  }
+  90% {
+    transform: translate(var(--shakeDist));
+  }
+  100% {
+    transform: translate(0);
+  }
 }
 
 /* For Mobile */

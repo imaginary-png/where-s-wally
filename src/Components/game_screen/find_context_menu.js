@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import "../../Assets/game_screen/find_context_menu.css";
 
-const FindMenu = ({ mousePos, toFind, foundStatus, selectCharacter }) => {
+const FindMenu = ({
+  mousePos,
+  toFind,
+  foundStatus,
+  selectCharacter,
+  findMenuLostFocus,
+}) => {
   const positionMenu = () => {
     // elements will always exist because this component will only be called/rendered from game.js when drawMenu is true
     centerElements("find-popup-root");
@@ -46,21 +52,26 @@ const FindMenu = ({ mousePos, toFind, foundStatus, selectCharacter }) => {
     }
   };
 
+  const loseFocusAfterClick = (e) => {
+    findMenuLostFocus(e);
+  };
+
   return (
     <div id="find-popup-root">
       {toFind.map((find) => {
         return (
           <div
             className={`to-find found-${foundStatus[find.id]}`}
-            onClick={() => {
+            onClick={(e) => {
               selectCharacter(find.id);
+              loseFocusAfterClick(e);
             }}
           >
             <img src={find.src} alt={find.name}></img>
           </div>
         );
       })}
-      <div id="target-circle"></div>
+      <div id="target-circle" onClick={findMenuLostFocus}></div>
     </div>
   );
 };
