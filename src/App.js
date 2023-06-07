@@ -14,7 +14,7 @@ const App = () => {
 
   const [gameState, setGameState] = useState("start");
   const [gameImage, setGameImage] = useState(gameImages[0]);
-  const [found, setFound] = useState([]);
+  const [found, setFound] = useState([false]);
 
   const setInitialFoundStatus = () => {
     let toFindStatus = [];
