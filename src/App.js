@@ -15,6 +15,7 @@ const App = () => {
   const [gameState, setGameState] = useState("start");
   const [gameImage, setGameImage] = useState(gameImages[0]);
   const [found, setFound] = useState([false]);
+  const [startTime, setStartTime] = useState(0);
 
   const setInitialFoundStatus = () => {
     let toFindStatus = [];
@@ -65,6 +66,10 @@ const App = () => {
     setGameImage(image);
   };
 
+  const updateStartTime = () => {
+    setStartTime(Date.now());
+  };
+
   const renderGameState = () => {
     switch (gameState) {
       case "start":
@@ -75,6 +80,7 @@ const App = () => {
             setGameState={updateGameState}
             setGameImage={updateGameImage}
             setFoundStatus={setInitialFoundStatus}
+            setStartTime={updateStartTime}
           />
         );
       case "game":
@@ -87,7 +93,13 @@ const App = () => {
           />
         );
       case "end":
-        return <EndScreen />;
+        return (
+          <EndScreen
+            startTime={startTime}
+            setGameState={updateGameState}
+            imageId={gameImage.id}
+          />
+        );
       default:
         return <p>Game State Error!? Please refresh page.</p>;
     }

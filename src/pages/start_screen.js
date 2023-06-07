@@ -7,6 +7,7 @@ const StartScreen = ({
   setGameState,
   setGameImage,
   setFoundStatus,
+  setStartTime,
 }) => {
   return (
     <div className="start-root-div">
@@ -18,6 +19,7 @@ const StartScreen = ({
       <button
         onClick={() => {
           setGameState("game");
+          setStartTime();
           setFoundStatus();
         }}
       >

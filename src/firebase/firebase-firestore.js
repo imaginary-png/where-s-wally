@@ -15,10 +15,10 @@ const database = () => {
     const snapshot = await getDocs(collection(db, `${imageId}`));
 
     for (let i = 0; i < snapshot.docs.length; i++) {
-      const ss = snapshot.docs[i];
-      if (isNaN(ss.id)) continue;
-      if (parseInt(ss.id) !== charId) continue;
-      return ss.data();
+      const doc = snapshot.docs[i];
+      if (isNaN(doc.id)) continue;
+      if (parseInt(doc.id) !== charId) continue;
+      return doc.data();
     }
   };
 
@@ -36,7 +36,29 @@ const database = () => {
     return true;
   };
 
-  return { validatePosition };
+  const getLeaderboard = async (imageId) => {
+    const snapshot = await getDocs(collection(db, "leaderboards"));
+
+    for (let i = 0; i < snapshot.docs.length; i++) {
+      const doc = snapshot.docs[i];
+
+      console.log(`${imageId} : ${doc.id}`);
+      if (parseInt(doc.id) !== imageId) continue;
+
+      const data = doc.data();
+      let result = [];
+
+      for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          result.push(data[key]);
+        }
+      }
+      console.log(`api result: ${result}`);
+      return result;
+    }
+  };
+
+  return { validatePosition, getLeaderboard };
 };
 
 export default database;

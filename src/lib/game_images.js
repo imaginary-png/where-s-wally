@@ -22,7 +22,7 @@ const GameImages = () => {
           { name: "master chief", src: alien_planet_0, id: 0 },
           { name: "ewok", src: alien_planet_1, id: 1 },
           { name: "clap trap", src: alien_planet_2, id: 2 },
-          { name: "baby yoda", src: alien_planet_3, id: 3 },
+          { name: "baby yoda  ", src: alien_planet_3, id: 3 },
         ],
         attribution:
           "https://pixeljoint.com/forum/forum_posts.asp?TID=26631&PN=1",
