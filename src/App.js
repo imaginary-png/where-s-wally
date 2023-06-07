@@ -1,13 +1,15 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import StartScreen from "./pages/start_screen";
-import Game from "./pages/game";
+import Game from "./pages/game_screen";
 import EndScreen from "./pages/end_screen";
 
 import GameStatePanel from "./Components/game_state_panel";
 import GameImages from "./lib/game_images";
+import database from "./firebase/firebase-firestore";
 
 const App = () => {
+  const db = database();
   const gameImages = GameImages().getImages();
 
   const [gameState, setGameState] = useState("start");
@@ -22,9 +24,11 @@ const App = () => {
     setFound(toFindStatus);
   };
 
-  const setFoundStatus = (charId) => {
+  const setFoundStatus = async (charId, clickPos) => {
     if (charId < 0 || charId > found.length - 1) return;
-    // verify against database
+    const valid = await db.validatePosition(gameImage.id, charId, clickPos);
+    if (!valid) return;
+
     let newFound = found.slice();
     newFound[charId] = true;
     setFound(newFound);

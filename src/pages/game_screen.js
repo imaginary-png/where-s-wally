@@ -1,29 +1,21 @@
 import { useState } from "react";
-import "../Assets/game_screen/game.css";
+import "../Assets/game_screen/game_screen.css";
 import FindMenu from "../Components/game_screen/find_context_menu";
 
 const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
-  const [charId, setCharId] = useState(-1);
+  const [clickPos, setClickPos] = useState([0, 0]);
 
-  // used for checking mouse pos for getting coords
+  // sets click position on the game image
   const game_clicked = (e) => {
-    // set char id in popup modal -- pass setCharId
     const posX = e.nativeEvent.offsetX;
     const posY = e.nativeEvent.offsetY;
+    setClickPos([posX, posY]);
     console.log(`${e.nativeEvent.offsetX}, ${e.nativeEvent.offsetY}`);
-
-    check_pos(posX, posY);
-  };
-
-  const check_pos = (posX, posY) => {
-    if (charId < 0 || charId > toFind.length - 1) return;
-
-    // check_database(image.id, charId, pos);
   };
 
   // check selected character against position
   const selectCharacter = (charId) => {
-    setFoundStatus(charId);
+    setFoundStatus(charId, clickPos);
   };
 
   // context menu
