@@ -4,7 +4,19 @@ const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
   const renderGamePanelState = () => {
     switch (gameState) {
       case "start":
-        return <p>Pick a world to explore!</p>;
+        return (
+          <div>
+            <p>Pick a world to explore!</p>
+            <a
+              href="https://github.com/imaginary-png/where-s-wally"
+              target="_blank"
+              rel="noreferrer"
+              id="github"
+            >
+              code.
+            </a>
+          </div>
+        );
       case "game":
         return (
           <div className="game-panel-container">

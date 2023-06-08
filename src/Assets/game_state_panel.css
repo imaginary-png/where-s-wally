@@ -172,4 +172,9 @@
     top: 20px;
     image-rendering: pixelated;
   }
+
+  #github {
+    position: relative;
+    top: -8px;
+  }
 }
