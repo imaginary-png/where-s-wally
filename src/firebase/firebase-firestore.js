@@ -1,8 +1,13 @@
 import { initializeApp } from "firebase/app";
 import "firebase/firestore";
 import getFirebaseConfig from "./firebase-config";
-import { getFirestore } from "firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
+import { getFirestore, updateDoc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
+import {
+  leaderboardDataToArray,
+  leaderbordBinarySearchInsert,
+  sortLeaderboardArray,
+} from "../lib/leaderboard";
 
 // Initialize Firebase
 
@@ -12,14 +17,9 @@ const database = () => {
   const db = getFirestore(app);
 
   const getPositionFromDb = async (imageId, charId) => {
-    const snapshot = await getDocs(collection(db, `${imageId}`));
-
-    for (let i = 0; i < snapshot.docs.length; i++) {
-      const doc = snapshot.docs[i];
-      if (isNaN(doc.id)) continue;
-      if (parseInt(doc.id) !== charId) continue;
-      return doc.data();
-    }
+    const snapshot = await getDoc(doc(db, `${imageId}`, `${charId}`));
+    if (!snapshot.exists()) return;
+    return snapshot.data();
   };
 
   const validatePosition = async (imageId, charId, clickPos) => {
@@ -37,28 +37,56 @@ const database = () => {
   };
 
   const getLeaderboard = async (imageId) => {
-    const snapshot = await getDocs(collection(db, "leaderboards"));
+    const docRef = await getDoc(doc(db, "leaderboards", `${imageId}`));
+    if (!docRef.exists()) return [];
 
-    for (let i = 0; i < snapshot.docs.length; i++) {
-      const doc = snapshot.docs[i];
+    // get data and convert to array
+    const data = docRef.data();
+    let board = leaderboardDataToArray(data);
 
-      console.log(`${imageId} : ${doc.id}`);
-      if (parseInt(doc.id) !== imageId) continue;
-
-      const data = doc.data();
-      let result = [];
-
-      for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-          result.push(data[key]);
-        }
-      }
-      console.log(`api result: ${result}`);
-      return result;
-    }
+    // sort so shortest time is first.
+    sortLeaderboardArray(board);
+    console.log(`api result: ${board}`);
+    return board;
   };
 
-  return { validatePosition, getLeaderboard };
+  const updateLeaderboard = async (username, score, imageId) => {
+    // get from db to compare
+    const leaderboard = await getLeaderboard(imageId);
+
+    const docRef = await doc(db, "leaderboards", `${imageId}`);
+
+    // find insertion point and insert new hi-score
+
+    // linear search - o(n)
+    // for (let i = 0; i < leaderboard.length; i++) {
+    //   if (leaderboard[i][1] > score) {
+    //     leaderboard.splice(i, 0, [username, score]); //insert score
+    //     leaderboard.pop(); // remove 11th place
+    //     break;
+    //   }
+    // }
+
+    // binary search - o(logn) - only 10 elements though, so probably no point
+    // just wanted to try implementing
+    leaderbordBinarySearchInsert(leaderboard, [username, score]);
+
+    // update scores in db,
+    await updateDoc(docRef, {
+      1: leaderboard[0],
+      2: leaderboard[1],
+      3: leaderboard[2],
+      4: leaderboard[3],
+      5: leaderboard[4],
+      6: leaderboard[5],
+      7: leaderboard[6],
+      8: leaderboard[7],
+      9: leaderboard[8],
+      10: leaderboard[9],
+    });
+  };
+
+  return { validatePosition, getLeaderboard, updateLeaderboard };
 };
 
 export default database;

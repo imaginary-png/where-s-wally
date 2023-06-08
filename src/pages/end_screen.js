@@ -10,6 +10,7 @@ const EndScreen = ({ startTime, setGameState, imageId }) => {
   const updateLeaderboards = async () => {
     const results = await database().getLeaderboard(imageId);
     console.log(`results: ${results}`);
+    if (results === []) return;
     setLeaderboard(results);
   };
 
@@ -22,6 +23,14 @@ const EndScreen = ({ startTime, setGameState, imageId }) => {
     console.log(`fdafdafadsf: ${leaderboard}`);
     // eslint-disable-next-line
   }, []);
+
+  // use effect on leaderboard ==> isHighScore - check user time against top 10
+  // if true -> render submit_score component
+
+  const submitScore = async () => {
+    await database().updateLeaderboard("nine", 9, imageId);
+    console.log("scored!");
+  };
 
   return (
     <div className="end-root-div">
@@ -43,6 +52,8 @@ const EndScreen = ({ startTime, setGameState, imageId }) => {
       >
         Home
       </button>
+
+      <button onClick={submitScore}>SUBMIT</button>
     </div>
   );
 };
