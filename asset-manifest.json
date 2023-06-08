@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/where-s-wally/build/static/css/main.57291993.css",
-    "main.js": "/where-s-wally/build/static/js/main.5e459416.js",
-    "static/media/post-apocalypse.png": "/where-s-wally/build/static/media/post-apocalypse.070ba750ccaed9d252ac.png",
-    "static/media/medieval.png": "/where-s-wally/build/static/media/medieval.6c8ea2d0f38873f836dd.png",
-    "static/media/pirate island.png": "/where-s-wally/build/static/media/pirate island.23bd6f2e0ab8e04d41ac.png",
-    "static/media/alien planet.png": "/where-s-wally/build/static/media/alien planet.e3959e4f86732a5b7ceb.png",
-    "static/media/prehistoria.png": "/where-s-wally/build/static/media/prehistoria.02dee22be77c69960961.png",
-    "static/media/underground.png": "/where-s-wally/build/static/media/underground.5a248a733b1f31ab127b.png",
-    "index.html": "/where-s-wally/build/index.html",
-    "main.57291993.css.map": "/where-s-wally/build/static/css/main.57291993.css.map",
-    "main.5e459416.js.map": "/where-s-wally/build/static/js/main.5e459416.js.map"
+    "main.css": "/where-s-wally/static/css/main.57291993.css",
+    "main.js": "/where-s-wally/static/js/main.d312ece9.js",
+    "static/media/post-apocalypse.png": "/where-s-wally/static/media/post-apocalypse.070ba750ccaed9d252ac.png",
+    "static/media/medieval.png": "/where-s-wally/static/media/medieval.6c8ea2d0f38873f836dd.png",
+    "static/media/pirate island.png": "/where-s-wally/static/media/pirate island.23bd6f2e0ab8e04d41ac.png",
+    "static/media/alien planet.png": "/where-s-wally/static/media/alien planet.e3959e4f86732a5b7ceb.png",
+    "static/media/prehistoria.png": "/where-s-wally/static/media/prehistoria.02dee22be77c69960961.png",
+    "static/media/underground.png": "/where-s-wally/static/media/underground.5a248a733b1f31ab127b.png",
+    "index.html": "/where-s-wally/index.html",
+    "main.57291993.css.map": "/where-s-wally/static/css/main.57291993.css.map",
+    "main.d312ece9.js.map": "/where-s-wally/static/js/main.d312ece9.js.map"
   },
   "entrypoints": [
     "static/css/main.57291993.css",
-    "static/js/main.5e459416.js"
+    "static/js/main.d312ece9.js"
   ]
 }
