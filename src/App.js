@@ -16,7 +16,7 @@ const App = () => {
   const [gameImage, setGameImage] = useState(gameImages[0]);
   const [found, setFound] = useState([false]);
   const [startTime, setStartTime] = useState(0);
-  const [name, setName] = useState("");
+  const [name, setName] = useState("anon");
   const [time, setTime] = useState(0);
 
   const setInitialFoundStatus = () => {
@@ -116,7 +116,8 @@ const App = () => {
     }
   };
 
-  //test fn
+  //test / debug fn
+  // eslint-disable-next-line
   const toggleGameState = () => {
     switch (gameState) {
       case "game":
@@ -129,6 +130,17 @@ const App = () => {
       default:
         updateGameState("game");
     }
+  };
+
+  // eslint-disable-next-line
+  const resetLeaderboardsButton = () => {
+    <button
+      onClick={() => {
+        database().populateDefaultLeadboards();
+      }}
+    >
+      reset leaderboards
+    </button>;
   };
 
   return (

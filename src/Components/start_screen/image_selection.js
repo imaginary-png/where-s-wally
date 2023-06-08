@@ -10,6 +10,7 @@ const ImageSelection = ({ images, selected, setGameImage }) => {
             image={img}
             selected={img.id === selected}
             setGameImage={setGameImage}
+            key={img.id}
           />
         );
       })}

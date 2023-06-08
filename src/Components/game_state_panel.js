@@ -1,9 +1,6 @@
-import { useEffect } from "react";
 import "../Assets/game_state_panel.css";
 
 const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
-  useEffect(() => console.log("found"), [foundStatus]);
-
   const renderGamePanelState = () => {
     switch (gameState) {
       case "start":
@@ -14,16 +11,27 @@ const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
             <p>Find the following!</p>
             {toFind.map((find) => {
               return (
-                <div className={`game-panel-item-${foundStatus[find.id]}`}>
-                  <img src={find.src} alt={find.name}></img>
+                <div
+                  className={`game-panel-item-${foundStatus[find.id]}`}
+                  key={find.id}
+                >
+                  <img src={find.src} alt={find.name} draggable="false"></img>
+                  <div className="game-panel-image-name">{find.name}</div>
                 </div>
               );
             })}
-            <a href={attribution}>img source</a>
+            <a href={attribution} target="_blank" rel="noreferrer">
+              img source
+            </a>
           </div>
         );
       case "end":
-        return <p>Finish!</p>;
+        return (
+          <div>
+            <p>Finished!</p>
+            <p id="submit-score-name-error">please enter a name.</p>
+          </div>
+        );
       default:
         return <p>Game State Error!? Please refresh page.</p>;
     }

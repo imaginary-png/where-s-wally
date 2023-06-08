@@ -33,3 +33,7 @@
   width: 100%;
   overflow: hidden;
 }
+
+.leaderboard-slow {
+  color: rgb(80, 237, 200);
+}

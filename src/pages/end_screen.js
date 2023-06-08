@@ -21,8 +21,10 @@ const EndScreen = ({ setGameState, imageId, name, updateName, time }) => {
   }, []);
 
   const isHighScore = () => {
-    if (leaderboard.length === 0) return;
-    if (time > leaderboard[leaderboard.length - 1][1]) return;
+    if (leaderboard.length === 0)
+      return <div>Error loading leaderboard...</div>;
+    if (time > leaderboard[leaderboard.length - 1][1])
+      return <div className="leaderboard-slow">sorry, too slow!</div>;
     return (
       <HiScore
         submitHiScore={submitScore}
@@ -37,16 +39,15 @@ const EndScreen = ({ setGameState, imageId, name, updateName, time }) => {
     if (time > leaderboard[leaderboard.length - 1][1]) return;
     await database().updateLeaderboard(name, time, imageId);
     await updateLeaderboards();
-    console.log("submitted!");
   };
 
   return (
     <div className="end-root-div">
       <p>time: {time}s</p>
       <div className="leaderboard-container">
-        {leaderboard.map((score) => {
+        {leaderboard.map((score, index) => {
           return (
-            <div className="leaderboard-data">
+            <div className="leaderboard-data" key={index}>
               <div className="score-name">{score[0]}</div>
               <div className="score-time">{score[1]}s</div>
             </div>

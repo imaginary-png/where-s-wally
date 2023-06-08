@@ -61,13 +61,14 @@ const FindMenu = ({
       {toFind.map((find) => {
         return (
           <div
+            key={find.id}
             className={`to-find found-${foundStatus[find.id]}`}
             onClick={(e) => {
               selectCharacter(find.id);
               loseFocusAfterClick(e);
             }}
           >
-            <img src={find.src} alt={find.name}></img>
+            <img src={find.src} alt={find.name} draggable="false"></img>
           </div>
         );
       })}

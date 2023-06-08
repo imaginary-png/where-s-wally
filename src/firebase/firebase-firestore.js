@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import "firebase/firestore";
 import getFirebaseConfig from "./firebase-config";
 import { getFirestore, updateDoc } from "firebase/firestore";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, setDoc } from "firebase/firestore";
 import {
   leaderboardDataToArray,
   leaderbordBinarySearchInsert,
@@ -85,7 +85,34 @@ const database = () => {
     });
   };
 
-  return { validatePosition, getLeaderboard, updateLeaderboard };
+  const populateDefaultLeadboards = async () => {
+    const data = {
+      1: ["creator", 0],
+      2: ["creator", 1],
+      3: ["creator", 2],
+      4: ["creator", 5],
+      5: ["creator", 10],
+      6: ["creator", 20],
+      7: ["creator", 40],
+      8: ["creator", 60],
+      9: ["creator", 80],
+      10: ["creator", 99],
+    };
+
+    await setDoc(doc(db, "leaderboards", "0"), data);
+    await setDoc(doc(db, "leaderboards", "1"), data);
+    await setDoc(doc(db, "leaderboards", "2"), data);
+    await setDoc(doc(db, "leaderboards", "3"), data);
+    await setDoc(doc(db, "leaderboards", "4"), data);
+    await setDoc(doc(db, "leaderboards", "5"), data);
+  };
+
+  return {
+    validatePosition,
+    getLeaderboard,
+    updateLeaderboard,
+    populateDefaultLeadboards,
+  };
 };
 
 export default database;

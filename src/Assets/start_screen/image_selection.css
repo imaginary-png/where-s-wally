@@ -17,3 +17,10 @@
 
   border-style: inset;
 }
+
+@media (max-width: 900px) {
+  .image-selection-main {
+    height: auto;
+    width: auto;
+  }
+}

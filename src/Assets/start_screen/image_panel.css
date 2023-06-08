@@ -1,4 +1,5 @@
 .image-panel-main {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,4 +30,20 @@
 }
 .image-selected-false:active {
   transform: scale(0.99);
+}
+
+.image-panel-main > div {
+  position: absolute;
+  bottom: 5px;
+  overflow: hidden;
+  align-self: center;
+}
+
+@media (max-width: 900px) {
+  .image-panel-main {
+    height: auto;
+  }
+  .image-panel-main > div {
+    visibility: hidden;
+  }
 }

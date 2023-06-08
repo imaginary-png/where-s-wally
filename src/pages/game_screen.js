@@ -10,7 +10,7 @@ const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
     const posX = e.nativeEvent.offsetX;
     const posY = e.nativeEvent.offsetY;
     setClickPos([posX, posY]);
-    console.log(`${e.nativeEvent.offsetX}, ${e.nativeEvent.offsetY}`);
+    //console.log(`${e.nativeEvent.offsetX}, ${e.nativeEvent.offsetY}`);
   };
 
   // check selected character against position
