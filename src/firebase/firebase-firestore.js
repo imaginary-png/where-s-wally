@@ -46,7 +46,6 @@ const database = () => {
 
     // sort so shortest time is first.
     sortLeaderboardArray(board);
-    console.log(`api result: ${board}`);
     return board;
   };
 

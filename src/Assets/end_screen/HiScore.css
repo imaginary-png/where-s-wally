@@ -1,0 +1,11 @@
+.submit-hiscore-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.submit-hiscore-container > label {
+  position: relative;
+  top: -2px;
+}

@@ -16,6 +16,8 @@ const App = () => {
   const [gameImage, setGameImage] = useState(gameImages[0]);
   const [found, setFound] = useState([false]);
   const [startTime, setStartTime] = useState(0);
+  const [name, setName] = useState("");
+  const [time, setTime] = useState(0);
 
   const setInitialFoundStatus = () => {
     let toFindStatus = [];
@@ -36,6 +38,7 @@ const App = () => {
     let newFound = found.slice();
     newFound[charId] = true;
     setFound(newFound);
+    checkGameWon();
   };
 
   const shakeGamePanel = () => {
@@ -53,12 +56,14 @@ const App = () => {
       if (!found[i]) return;
     }
 
-    setGameState("end");
+    updateGameState("end");
   };
 
+  // eslint-disable-next-line
   useEffect(checkGameWon, [found]);
 
   const updateGameState = (state) => {
+    if (state === "end") updateTime();
     setGameState(state);
   };
 
@@ -69,6 +74,9 @@ const App = () => {
   const updateStartTime = () => {
     setStartTime(Date.now());
   };
+
+  const updateName = (name) => setName(name);
+  const updateTime = () => setTime((Date.now() - startTime) / 1000);
 
   const renderGameState = () => {
     switch (gameState) {
@@ -98,6 +106,9 @@ const App = () => {
             startTime={startTime}
             setGameState={updateGameState}
             imageId={gameImage.id}
+            name={name}
+            updateName={updateName}
+            time={time}
           />
         );
       default:
@@ -130,7 +141,6 @@ const App = () => {
           foundStatus={found}
         />
       </div>
-      <button onClick={toggleGameState}>toggle game state</button>
       {renderGameState()}
     </div>
   );

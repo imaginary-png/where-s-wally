@@ -3,13 +3,33 @@
   flex-direction: column;
   align-items: center;
   gap: 25px;
-  background-color: aquamarine;
-  height: 70vh;
+  color: lightgray;
+  font-size: 25px;
 }
 
-.leaderboard {
+.leaderboard-container {
   display: flex;
-  height: 60%;
-  width: 60%;
+  flex-direction: column;
+  width: 20%;
+  min-width: 500px;
+  min-height: 600px;
   border-style: inset;
+}
+
+.leaderboard-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-style: outset;
+  border-width: 0 0 3px 0;
+}
+
+.leaderboard-data,
+.submit-hiscore-container {
+  padding: 10px 20%;
+}
+.score-name,
+.score-time {
+  width: 100%;
+  overflow: hidden;
 }

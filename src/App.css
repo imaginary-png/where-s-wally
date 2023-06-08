@@ -1,5 +1,6 @@
 body {
-  background-color: rgba(70, 67, 67, 0.615);
+  background-color: #615e5e;
+  font-size: 20px;
 }
 
 .App {
@@ -15,5 +16,5 @@ img {
 }
 
 .app-game-panel {
-  height: 160px;
+  height: 12vh;
 }

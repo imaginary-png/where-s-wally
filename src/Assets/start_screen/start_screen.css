@@ -6,3 +6,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.start-root-div > button {
+  margin: 10px;
+}

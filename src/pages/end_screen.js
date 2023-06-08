@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import "../Assets/end_screen/end_screen.css";
 import database from "../firebase/firebase-firestore";
+import HiScore from "../Components/end_screen/HiScore";
 
-const EndScreen = ({ startTime, setGameState, imageId }) => {
+const EndScreen = ({ setGameState, imageId, name, updateName, time }) => {
   const [leaderboard, setLeaderboard] = useState([["creator", 0]]);
-
-  const endTime = Date.now();
 
   const updateLeaderboards = async () => {
     const results = await database().getLeaderboard(imageId);
-    console.log(`results: ${results}`);
     if (results === []) return;
     setLeaderboard(results);
   };
@@ -19,30 +17,42 @@ const EndScreen = ({ startTime, setGameState, imageId }) => {
       await updateLeaderboards();
     }
     fetchData();
-
-    console.log(`fdafdafadsf: ${leaderboard}`);
     // eslint-disable-next-line
   }, []);
 
-  // use effect on leaderboard ==> isHighScore - check user time against top 10
-  // if true -> render submit_score component
+  const isHighScore = () => {
+    if (leaderboard.length === 0) return;
+    if (time > leaderboard[leaderboard.length - 1][1]) return;
+    return (
+      <HiScore
+        submitHiScore={submitScore}
+        updateName={updateName}
+        name={name}
+      />
+    );
+  };
 
   const submitScore = async () => {
-    await database().updateLeaderboard("nine", 9, imageId);
-    console.log("scored!");
+    if (leaderboard.length === 0) return;
+    if (time > leaderboard[leaderboard.length - 1][1]) return;
+    await database().updateLeaderboard(name, time, imageId);
+    await updateLeaderboards();
+    console.log("submitted!");
   };
 
   return (
     <div className="end-root-div">
-      <p>time: {(endTime - startTime) / 1000}s</p>
-      <div className="leaderboard">
+      <p>time: {time}s</p>
+      <div className="leaderboard-container">
         {leaderboard.map((score) => {
           return (
-            <div className="leaderboard-score">
-              {score[0]} : {score[1]}
+            <div className="leaderboard-data">
+              <div className="score-name">{score[0]}</div>
+              <div className="score-time">{score[1]}s</div>
             </div>
           );
         })}
+        {isHighScore()}
       </div>
       <button
         onClick={() => {
@@ -52,8 +62,6 @@ const EndScreen = ({ startTime, setGameState, imageId }) => {
       >
         Home
       </button>
-
-      <button onClick={submitScore}>SUBMIT</button>
     </div>
   );
 };
