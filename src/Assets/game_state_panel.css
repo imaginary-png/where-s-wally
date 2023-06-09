@@ -144,6 +144,34 @@
   visibility: hidden;
 }
 
+.how-to-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 700;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+
+  cursor: help;
+}
+
+.how-to-play-text {
+  position: absolute;
+  top: 90px;
+  padding: 0 20px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 15px;
+  visibility: hidden;
+}
+
+.how-to-play:hover + .how-to-play-text {
+  visibility: visible;
+}
+
 /* For Mobile */
 @media screen and (max-width: 900px) {
   .game-panel-root {

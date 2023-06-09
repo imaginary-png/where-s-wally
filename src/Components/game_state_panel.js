@@ -35,6 +35,19 @@ const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
             <a href={attribution} target="_blank" rel="noreferrer">
               img source
             </a>
+            <div class="how-to-play">
+              <div>?</div>
+            </div>
+            <div class="how-to-play-text">
+              <p>
+                Navigate the world by click and dragging, or using the arrow
+                keys.
+              </p>
+              <p>
+                Click on a spot to open the find menu, and select the character.
+              </p>
+              <p>Find them all to win!</p>
+            </div>
           </div>
         );
       case "end":
