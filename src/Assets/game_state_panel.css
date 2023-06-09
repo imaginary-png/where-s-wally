@@ -128,10 +128,10 @@
 .game-panel-image-name {
   background-color: rgba(0, 0, 0, 0.604);
   box-shadow: 0 0 6px 5px rgba(0, 0, 0, 0.557);
-  width: fit-content;
   position: absolute;
   bottom: -35px;
   visibility: hidden;
+  white-space: nowrap;
 }
 
 .game-panel-item-false:hover > img + .game-panel-image-name,
