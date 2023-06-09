@@ -64,7 +64,9 @@ const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
   let startMousePosX;
   let startMousePosY;
 
+  // scroll on drag fn
   const startDragging = (e) => {
+    if (e.button !== 0) return;
     isDown = true;
     // initial mouse pos
     startMousePosX = e.nativeEvent.clientX;
@@ -118,11 +120,14 @@ const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
           draggable="false"
           onMouseUp={(e) => {
             if (isDragging) return;
+            if (e.button !== 0) return;
+            console.log(e.button);
             game_clicked(e);
             toggleDrawMenu(e);
           }}
           onMouseOver={findMenuLostFocus}
         />
+
         {drawMenu ? (
           <FindMenu
             mousePos={mousePos}
