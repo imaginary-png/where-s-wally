@@ -2,6 +2,14 @@ body {
   background-color: #615e5e;
   font-size: 20px;
 }
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
 
 .App {
   text-align: center;
@@ -17,4 +25,9 @@ img {
 
 .app-game-panel {
   height: 12vh;
+}
+
+a,
+a:visited {
+  color: rgb(189, 166, 166);
 }

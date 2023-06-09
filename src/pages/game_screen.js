@@ -59,15 +59,65 @@ const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
     if (drawMenu) toggleDrawMenu(e);
   };
 
+  let isDown = false;
+  let isDragging = false;
+  let startMousePosX;
+  let startMousePosY;
+
+  const startDragging = (e) => {
+    isDown = true;
+    // initial mouse pos
+    startMousePosX = e.nativeEvent.clientX;
+    startMousePosY = e.nativeEvent.clientY;
+  };
+
+  const scrollOnDrag = (e) => {
+    if (!isDown) return;
+    isDragging = true;
+    e.preventDefault();
+    // current mouse pos, if old - new < 0, scroll towards right
+    const endMousePosX = e.nativeEvent.clientX;
+    const endMousePosY = e.nativeEvent.clientY;
+
+    // const xDiff = startMousePosX - endMousePosX;
+    // const yDiff = startMousePosY - endMousePosY;
+    // if (xDiff < 5 && xDiff > -5 && yDiff < 5 && yDiff > -5) {
+    //   isDragging = false;
+    //   return;
+    // }
+
+    const walkSpeed = 1.5;
+    // walk speed - change in scroll
+    const walkX = (startMousePosX - endMousePosX) * walkSpeed;
+    const walkY = (startMousePosY - endMousePosY) * walkSpeed;
+
+    window.scroll(window.scrollX + walkX, window.scrollY + walkY);
+
+    startMousePosX = endMousePosX;
+    startMousePosY = endMousePosY;
+  };
+
+  const dragStopped = (e) => {
+    isDown = false;
+    isDragging = false;
+  };
+
   return (
-    <div className="game-root-div">
+    <div
+      className="game-root-div"
+      onMouseDown={startDragging}
+      onMouseLeave={dragStopped}
+      onMouseUp={dragStopped}
+      onMouseMove={scrollOnDrag}
+    >
       <div className="game-image-div">
         <img
           src={image}
           alt="game"
           id="game-image"
           draggable="false"
-          onClick={(e) => {
+          onMouseUp={(e) => {
+            if (isDragging) return;
             game_clicked(e);
             toggleDrawMenu(e);
           }}
