@@ -28,17 +28,18 @@ const App = () => {
   };
 
   const setFoundStatus = async (charId, clickPos) => {
-    if (charId < 0 || charId > found.length - 1) return;
+    if (charId < 0 || charId > found.length - 1) return false;
     const valid = await db.validatePosition(gameImage.id, charId, clickPos);
     if (!valid) {
       shakeGamePanel();
-      return;
+      return false;
     }
 
     let newFound = found.slice();
     newFound[charId] = true;
     setFound(newFound);
     checkGameWon();
+    return true;
   };
 
   const shakeGamePanel = () => {

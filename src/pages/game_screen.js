@@ -14,8 +14,36 @@ const Game = ({ image, toFind, foundStatus, setFoundStatus }) => {
   };
 
   // check selected character against position
-  const selectCharacter = (charId) => {
-    setFoundStatus(charId, clickPos);
+  const selectCharacter = async (charId) => {
+    const isFound = await setFoundStatus(charId, clickPos);
+    if (isFound) drawTargetCircle();
+  };
+
+  // could prob clean up and put dom stuff in another file...
+  const drawTargetCircle = () => {
+    const ele = document.getElementsByClassName("game-image-div")[0];
+    const circle = document.createElement("div");
+    const circleContainer = document.createElement("div");
+
+    circleContainer.classList.add("target-stamp-container");
+    circle.classList.add("target-stamp-approved", "stamp");
+
+    //need to append / render child first in order to get width
+    circle.textContent = "approved";
+    circleContainer.appendChild(circle);
+    ele.appendChild(circleContainer);
+
+    const widthOffset =
+      parseInt(
+        window.getComputedStyle(circleContainer).getPropertyValue("width")
+      ) / 2;
+    const heightOffset =
+      parseInt(
+        window.getComputedStyle(circleContainer).getPropertyValue("height")
+      ) / 2;
+
+    circleContainer.style.left = `${clickPos[0] - widthOffset}px`;
+    circleContainer.style.top = `${clickPos[1] - heightOffset}px`;
   };
 
   // context menu

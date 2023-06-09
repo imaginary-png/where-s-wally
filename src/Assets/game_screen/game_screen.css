@@ -1,9 +1,63 @@
 .game-root-div {
   width: fit-content;
+  position: relative;
 }
 
 #game-image {
   image-rendering: pixelated;
   width: 3000px;
   padding: 100px;
+}
+
+.target-circle {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 86, 34, 0.71),
+    rgba(0, 85, 255, 0.692)
+  );
+  background: radial-gradient(
+    circle,
+    rgba(255, 86, 34, 0.71) 26%,
+    rgba(255, 86, 34, 0.71) 0%
+  );
+
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+/* stamp effect modifed from: https://codepen.io/555/pen/pdwvBP */
+.stamp {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.1rem 0.5rem;
+  text-transform: uppercase;
+  font-family: "Courier";
+  -webkit-mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png");
+  mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png");
+  -webkit-mask-size: 944px 604px;
+  mask-size: 944px 604px;
+}
+
+.target-stamp-approved {
+  background-color: #0a0a0aa8;
+  box-shadow: 0 0 10px 10px rgb(244, 12, 236);
+  color: #27d173;
+  border: 0.3rem solid #37c786;
+  -webkit-mask-position: 13rem 6rem;
+  mask-position: 11rem 5rem;
+  border-radius: 0;
+  pointer-events: none;
+}
+
+.target-stamp-container {
+  position: absolute;
+  box-shadow: 0 0 18px 3px rgb(0, 0, 0);
+  transform: rotate(-18deg);
 }
