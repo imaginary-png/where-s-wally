@@ -44,8 +44,7 @@ const GameStatePanel = ({ gameState, toFind, attribution, foundStatus }) => {
                 keys.
               </p>
               <p>
-                Click on a spot to open the find menu, and select the character
-                you found
+                Click on a spot to open the find menu, and select the character.
               </p>
               <p>Find them all to win!</p>
             </div>
